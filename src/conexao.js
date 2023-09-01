@@ -1,14 +1,11 @@
-require('dotenv').config();
+const { Pool } = require('pg');
 
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host: process.env.HOST,
-        port: process.env.PORT,
-        user: process.env.USER,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE
-    }
+const conexao = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    password: 'postgres',
+    port: 5432,
+    database: 'impulso'
 });
 
-module.exports = knex
+module.exports = conexao;
