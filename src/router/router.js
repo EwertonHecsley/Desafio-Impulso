@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { cadastrarUsuario, listarUsuarios } = require('../controllers/controladores');
-const { verificaEmailValido, intermediarioCadastrarUsuario } = require('../middlewares/intermediarios');
+const { cadastrarUsuario, listarUsuarios, atualizarUsuario } = require('../controllers/controladores');
+const { verificaEmailValido, intermediarioCadastrarUsuario, intermediarioAtualizarUsuario } = require('../middlewares/intermediarios');
 const { login } = require('../controllers/controladorLogin');
 const { intermediarioLogin } = require('../middlewares/intermediarioLogin');
 const { verificaTokenLogin } = require('../middlewares/verificaTokenLogin');
@@ -14,5 +14,6 @@ rota.post('/login', intermediarioLogin, login);
 rota.use(verificaTokenLogin)
 
 rota.get('/usuario', listarUsuarios);
+rota.put('/usuario/:id', intermediarioAtualizarUsuario, atualizarUsuario)
 
 module.exports = rota;
