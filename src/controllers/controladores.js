@@ -22,6 +22,17 @@ const cadastrarUsuario = async (req, res) => {
 
 };
 
+const listarUsuarios = async (req, res) => {
+    try {
+        const usuarios = await pool.query(`SELECT id,nome,email,data_criacao FROM usuarios`);
+
+        return res.status(200).json(usuarios.rows)
+    } catch (error) {
+        return res.status(500).json({ mesangem: error.message });
+    }
+}
+
 module.exports = {
-    cadastrarUsuario
+    cadastrarUsuario,
+    listarUsuarios
 }

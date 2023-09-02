@@ -1,10 +1,10 @@
-const validador = require('email-validator');
-const pool = require('../conexao')
+const pool = require('../conexao');
+const funcaoVerificaEmail = require('../utils/funcoesExtras')
 
 const verificaEmailValido = (req, res, next) => {
     const { email } = req.body;
 
-    if (!validador.validate(email)) {
+    if (!funcaoVerificaEmail(email)) {
         return res.status(400).json({ mensagem: 'Email inválido' });
     };
 
